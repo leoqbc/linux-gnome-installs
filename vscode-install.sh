@@ -4,6 +4,8 @@ INSTALLS=$HOME/installs
 
 mkdir -p $PACKAGES
 
+echo "Baixando binario"
+
 wget https://update.code.visualstudio.com/latest/linux-x64/stable -O $PACKAGES/vscode.stable.tar.gz 
 
 mkdir -p $INSTALLS
@@ -11,6 +13,8 @@ mkdir -p $INSTALLS
 echo "Descompactando tar..."
 
 tar -xzf $PACKAGES/vscode.stable.tar.gz -C $INSTALLS
+
+echo "Criando ícone..."
 
 touch $HOME/.local/share/applications/Code.desktop
 
@@ -24,8 +28,6 @@ Type=Application
 Categories=Development;
 EOF
 
-echo "Icone criado"
-
 echo 'Criando comando em CLI'
 
 mkdir -p $HOME/.local/bin
@@ -37,5 +39,5 @@ chmod +x $HOME/.local/bin/code
 cat > $HOME/.local/bin/code <<EOF
 #!/bin/bash
 
-$HOME/installs/VSCode-linux-x64/bin/code $@ &
+$HOME/installs/VSCode-linux-x64/bin/code \$@ &
 EOF
